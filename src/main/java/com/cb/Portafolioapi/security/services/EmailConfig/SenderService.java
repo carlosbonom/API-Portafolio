@@ -16,12 +16,15 @@ public class SenderService {
     @Value("${spring.mail.username}")
     private String email;
 
+    @Value("${mail}")
+    private String myEmail;
+
     public void sendSimpleEmail(EmailFormat emailFormat){
         SimpleMailMessage message = new SimpleMailMessage();
 
         message.setFrom(email);
-        message.setTo(emailFormat.getToEmail());
-        message.setText(emailFormat.getBody());
+        message.setTo(myEmail);
+        message.setText("Acabas de recibir un mensaje de: " + emailFormat.getToEmail() + " Con el siguente mensaje: " + emailFormat.getBody());
         message.setSubject(emailFormat.getSubject());
 
         mailSender.send(message);
