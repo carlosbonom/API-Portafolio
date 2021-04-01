@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -48,7 +49,12 @@ public class ProjectController {
     }
 
     @GetMapping
-    public  ResponseEntity<List<Project>> getProject(){
+    public  ResponseEntity<List<Project>> getAllProject(){
         return ResponseEntity.ok(projectService.getAllProject());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Optional<Project>> getProject(@PathVariable(value = "id") Long id){
+        return ResponseEntity.ok(projectService.getProject(id));
     }
 }

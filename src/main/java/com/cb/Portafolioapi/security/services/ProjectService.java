@@ -23,6 +23,10 @@ public class ProjectService {
         return projectRepository.findAll();
     }
 
+    public Optional<Project> getProject(Long id){
+        return projectRepository.findById(id);
+    }
+
     public Project update(Project project, Long id){
         Project projectId = projectRepository.findById(id)
                 .orElseThrow(()-> new ExpressionException("no found"));
